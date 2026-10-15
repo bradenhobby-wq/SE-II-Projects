@@ -1,10 +1,10 @@
 # Feature: Warehouse Maintenance
 **Feature ID:** 12
 **Branch pattern:** `feature/warehouse-maintenance`
-**Status:** Draft
+**Status:** First Draft
 **Created:** 2026-10-13
 **Input:** Companies maintain their warehouses - add, update, deactivate
-**Depends on:** [Feature 13 — Company Maintenance](feature-13-company-maintenance.md)
+**Depends on:** [Feature 11 - User Authentication And Verification](feature-11-user-authentication-and-verification.md) [Feature 13 — Company Maintenance](feature-13-company-maintenance.md)
 
 ## User Stories
 
@@ -43,11 +43,14 @@ Criteria
 - **FR-001**: System MUST only allow a company manager to view the warehouses
 - **FR-002**: Only `address`, `capacity`, and `numOfAisles` are required to create a `Warehouse`.
 - **FR-003**: `operatingHours` must describe what days and what hours the warehouse is open as well as any exceptions to those rules.
+- **FR-007**: Only warehouse managers can add, edit, or deactivate a `Warehouse`
+- **FR-007**: Only the fields completed in the edit form are actually saved to the object
+- **FR-008**: Only active objects are displayed in the UI
 
 ## Key Entities
 - **Warehouse**: A warehouse that the company owns
 ## Data Model Requirements
-### `users` table
+### `Warehouse` table
 | Field | Type | Rules |
 |-------|------|-------|
 | `warehousId` | INTEGER PK | Auto-increment |
@@ -102,4 +105,4 @@ Criteria
 * **Given** a company manager has logged in and navigated to the warehouse page
 * **When** they confirm that they want to deactivate a warehouse object
 * **Then** `Warehouse.active` is changed to false
-* **And** the System responds "[Product Name] warehouse successfully deleted"
+* **And** the System responds "[Product Name] warehouse successfully deactivated"

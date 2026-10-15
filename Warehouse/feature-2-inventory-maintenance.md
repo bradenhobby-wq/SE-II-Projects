@@ -1,10 +1,10 @@
 # Feature: Inventory Maintenance
 **Feature ID:** 2
 **Branch pattern:** `feature/inventory_maintenance`
-**Status:** Draft
+**Status:** First Draft
 **Created:** 2026-09-27
-**Input:** Maintain inventory in the warehouse - add, update, delete, order more - with a list of products and items (which are the products currently in stock)
-**Depends on:** [Feature 1 - Common Inventory Items Management] (feature-1-common-inventory-items.md)
+**Input:** Maintain inventory in the warehouse - add, update, deactivate, order more - with a list of products and items (which are the products currently in stock)
+**Depends on:**: [Feature 1 - Common Inventory Items Management](feature-1-common-inventory-items.md) [Feature 11 - User Authentication And Verification](feature-11-user-authentication-and-verification.md) [Feature 14 - Barcode Scanning Maintenance](feature-11-barcode-scanning-maintenance.md)
 
 ## User Stories
 ### US-2.1: Add Items to Inventory
@@ -22,7 +22,7 @@ Criteria
 **I want to** be able to search for items in inventory
 **So that** I can access their information
 
-**Priority:** P1
+**Priority:** P2
 **Independent test:** Search for an item based on an attribute and view its information
 **Acceptance scenarios:** see ### US-2.2 under Acceptance
 Criteria
@@ -37,9 +37,9 @@ Criteria
 **Acceptance scenarios:** see ### US-2.2 under Acceptance
 Criteria
 
-### US-2.4: Delete Items in Inventory
+### US-2.4: Deactivate Items in Inventory
 **As a** Inventory clerk
-**I want to** have the system automatically delete products from the inventory list when a product's in stock value equals zero
+**I want to** have the system automatically deactivate products from the inventory list when a product's in stock value equals zero
 **So that** the inventory data only displays products in stock
 
 **Priority:** P1
@@ -52,7 +52,7 @@ Criteria
 **I want to** update inventory when I scan an item when its received/shipped out
 **So that** the inventory data is automatically updated when the inventory is received
 
-**Priority:** P1
+**Priority:** P2
 **Independent test:** Scan items for shipment and receiving. Make sure that the inventory is properly increased for receiving and propery decreased for shipment
 **Acceptance scenarios:** see ### US-2. under Acceptance
 Criteria
@@ -63,10 +63,13 @@ Criteria
 - **FR-002**: An Item MUST include an inventory slot, serial number, aisle number, and a reference to a Product object
 - **FR-003**: When searching for an item, the options for attributes to search by MUST only include the SKU, UPC, serial number, or name. These are all found in the Product object "product"
 - **FR-004**: When clicking on an item that shows up in the search, all of the item's attributes should be displayed
-- **FR-005**: System MUST allow authorized employees to add, update, or delete the Inventory List
+- **FR-005**: System MUST allow authorized employees to add, update, or deactivate the Inventory List
 - **FR-006**: System MUST group all Items with the same Product together unless the serial number is specified in the search
 - **FR-007**: When an Item is created, the Product attribute "inventoryCount" MUST be updated. This attribute must be Static so that every instance has the accurate inventoryCount
 - **FR-008**: search results MUST appear before 10 seconds have passed from the search query
+- **FR-007**: Only the fields completed in the edit form are actually saved to the object
+- **FR-008**: Only active objects are displayed in the UI
+- **FR-009**: Only inventory clerks are allowed to add, edit, or deactivate an `Item`
 
 ## Key Entities
 - **Item**: While a Product is a description of a possible inventory item, an Item represents an individual package. An Item will be created every time a product is received.
@@ -82,6 +85,8 @@ Criteria
 | `aisleNumber` | INTEGER | Required |
 | `serialNumber` | STRING(50) | Required, unique |
 | `product` | PRODUCT | Required |
+| `id` | INTEGER PK | Auto-increment |
+| `active` | BOOLEAN | Default false |
 
 ## Acceptance Criteria
 
@@ -116,10 +121,10 @@ Criteria
 * **And** the serial number is already in use
 * **Then** the system throws 'DuplicateException'
 
-### US-2.4 — Delete Items in Inventory
-#### Scenario: Clerk deletes item
+### US-2.4 — Deactivate Items in Inventory
+#### Scenario: Clerk deactivates item
 * **Given** an inventory clerk is authorized and an item exists
-* **When** the clerk deletes an item
+* **When** the clerk deactivates an item
 * **Then** item is removed from the inventory list
 
 ### US-2.5 — Update Inventory When Scanning Items
@@ -131,5 +136,5 @@ Criteria
 #### Scenario: Warehouse worker scans shipped item out
 * **Given** a warehouse worker is authorized and an item exists
 * **When** the worker scans the item being shipped
-* **Then** the item is deleted and the inventory count of its Product class is decremented by one
+* **Then** the item is deactivated and the inventory count of its Product class is decremented by one
 * **And** the inventory slot is determined by the system and a serial number is generated

@@ -1,7 +1,7 @@
 # Feature: User Authentication and Verification
 **Feature ID:** 11
 **Branch pattern:** `feature/user-authentication-and-verification`
-**Status:** Draft
+**Status:** First Draft
 **Created:** 2026-10-12
 **Input:** Control access to the POS by account and role; support log in and log out; maintain employee passwords.
 **Depends on:** [Feature 9 — Employees Access Management](feature-9-employees-access-management.md)
@@ -43,7 +43,7 @@ Criteria
 **I want to** be logged out after I am not active for a while
 **So that** I don't accidently leave the account open for malicious users
 
-**Priority:** P1
+**Priority:** P2
 **Independent test:** An employee logs in, stops being active for the time listed in FR-001, and the system logs the user out after a warning
 **Acceptance scenarios:** see ### US-11.4 under Acceptance
 Criteria

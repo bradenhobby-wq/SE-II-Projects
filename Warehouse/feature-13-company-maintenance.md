@@ -1,10 +1,10 @@
 # Feature: Company Maintenance
 **Feature ID:** 13
 **Branch pattern:** `feature/company-maintenance`
-**Status:** Draft
+**Status:** First Draft
 **Created:** 2026-10-13
 **Input:** Company managers maintain their company and subsidirary companies - add, update, deactivate
-**Depends on:** [Feature 13 — Company Maintenance](feature-13-company-maintenance.md)
+**Depends on:** [Feature 11 - User Authentication And Verification](feature-11-user-authentication-and-verification.md)[Feature 13 — Company Maintenance](feature-13-company-maintenance.md)
 
 ## User Stories
 
@@ -45,6 +45,8 @@ Criteria
 - **FR-003**: `operatingHours` must describe what days and what hours the company is open as well as any exceptions to those rules.
 - **FR-004**: If `hasParentCompany` is true, `parentCompany` is true
 - **FR-005**: Only a `companyManager` can edit a `Company`
+- **FR-007**: Only the fields completed in the edit form are actually saved to the object
+- **FR-008**: Only active objects are displayed in the UI
 
 ## Key Entities
 - **Company**: A company that owns warehouses. Can be a subsidiary or parent company
@@ -62,7 +64,7 @@ Criteria
 | `parentCompany` | COMPANY | Required if `hasParentCompany` is true |
 | `hasParentCompany` | BOOLEAN | Required; Default false |
 | `active` | BOOLEAN | Default true |
-| "warehouses" | WAREHOUST LIST | Needs to be dynamically sized |
+| `warehouses` | WAREHOUST LIST | Needs to be dynamically sized |
 
 ## Acceptance Criteria
 

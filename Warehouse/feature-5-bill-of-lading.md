@@ -1,11 +1,10 @@
 # Feature: Bill Of Lading
 **Feature ID:** 5
 **Branch pattern:** `feature/bill-of-lading`
-**Status:** Draft
+**Status:** First Draft
 **Created:** 2026-10-06
 **Input:** Maintains bill of lading - contains dates, customer info, and the items ordered
-**Depends on:** [Feature 10 — Merchandise Management](feature-10-merchandise-management.md)
-**Related:** optional links to ADRs or reference docs
+**Depends on:** [Feature 10 — Merchandise Management](feature-10-merchandise-management.md) [Feature 11 - User Authentication And Verification](feature-11-user-authentication-and-verification.md)
 
 ## User Stories
 ### US-5.1: Add Bill of Lading
@@ -14,7 +13,7 @@
 **So that** we can check the shipment with our order
 
 **Priority:** P1
-**Independent test:** As an inventory/supplier clerk, create a Bill of Lading
+**Independent test:** As an inventory/shipping clerk, create a Bill of Lading
 **Acceptance scenarios:** see ### US-5.1 under Acceptance
 Criteria
 
@@ -24,17 +23,17 @@ Criteria
 **So that** we can correct any errors made during the recording
 
 **Priority:** P1
-**Independent test:** As an inventory/supplier clerk, edit a Bill of Lading, verify that the changes are saved correctly
+**Independent test:** As an inventory/shipping clerk, edit a Bill of Lading, verify that the changes are saved correctly
 **Acceptance scenarios:** see ### US-5.2 under Acceptance
 Criteria
 
-### US-5.3: Delete Bill of Lading
+### US-5.3: Deactivate Bill of Lading
 **As a** inventory/shipping clerk
-**I want to** delete a bill of lading
+**I want to** deactivate a bill of lading
 **So that** we can keep the bills of lading updated
 
 **Priority:** P1
-**Independent test:** As an inventory/supplier clerk, delete a Bill of Lading
+**Independent test:** As an inventory/shipping clerk, deactivate a Bill of Lading
 **Acceptance scenarios:** see ### US-5.3 under Acceptance
 Criteria
 
@@ -43,7 +42,7 @@ Criteria
 **I want to** be able to search bills of lading using either `BillOfLading.date` or `BillOfLading.customerNumber`
 **So that** I can easily access information about past bills of lading
 
-**Priority:** P1
+**Priority:** P2
 **Independent test:** Inventory/shipping clerk calls `BillOfLading.search` with the info they want to search by; bills of lading with matching information is returned
 **Acceptance scenarios:** see ### US-5.4 under Acceptance
 Criteria
@@ -52,8 +51,9 @@ Criteria
 ### Functional Requirements
 - **FR-001**: All recorded dates must be in MM/DD/YYYY format
 - **FR-002**: Search results must appear within 10 seconds 99% of the time
-- **FR-003**: Only warehouse or supplier clerks can manage bills of lading
+- **FR-003**: Only inventory or shipping clerks can add, edit, or deactivate a `BillOfLading`
 - **FR-004**: The user can search by order name or by date
+- **FR-005**: Only the fields completed in the edit form are actually saved to the object
 
 ## Key Entities
 - **Bill of Lading**: Contains all of the info in a bill of lading. Used to verify the shipment against the SupplierOrder.
@@ -62,6 +62,7 @@ Criteria
 | Field | Type | Rules |
 |-------|------|-------|
 | `orderName` | STRING(50) | Required |
+| `id` | INTENGER PK | Auto-increment |
 | `orderDate` | STRING(50) | Required |
 | `shippedDate` | STRING(50) | Required |
 | `orderNumber` | STRING(50) | Required, unique |
@@ -99,10 +100,10 @@ Criteria
 * **Then** a `BillOfLading` is not saved
 * **And** the system responds "Enter dates in MM/DD/YYYY format"
 
-### US-5.3 — Delete Bill of Lading
-#### Scenario: Bill of Lading Successfully Deleted
+### US-5.3 — Deactivate Bill of Lading
+#### Scenario: Bill of Lading Successfully Deactivated
 * **Given** an inventory/shipping clerk is logged in and authorized
-* **When** the clerk selects and confirms the bill of lading to be deleted
+* **When** the clerk selects and confirms the bill of lading to be deactivated
 * **Then** the bill of lading is removed from the database
 
 ### US-5.4 — Search Bills of Lading

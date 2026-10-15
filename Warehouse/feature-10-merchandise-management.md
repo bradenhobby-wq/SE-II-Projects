@@ -1,7 +1,7 @@
 # Feature: Merchandise Management
 **Feature ID:** 10
 **Branch pattern:** `feature/merchandise-management`
-**Status:** Draft
+**Status:** First Draft
 **Created:** 2026-10-12
 **Input:** The warehouse system maintains merchandise - add, update, delete. Only the warehouse system needs to do this. Any UI created in this feature is solely meant to test that the system can receive user input to maintain merchandise.
 
@@ -29,7 +29,7 @@ Criteria
 ### US-10.3: Delete Merchandise
 **As a** warehouse system
 **I want to** delete merchandise from the database
-**So that** old merchandise objects don't clutter up the database
+**So that** old merchandise objects don't take up valuable memory
 
 **Priority:** P1
 **Independent test:** Delete existing merchandise
@@ -44,6 +44,7 @@ Criteria
 - **FR-004**: Only the id for the product, `price`, `cases`, and `qtyPerCase` must be passed on to initialize `Merchandise.` `price` and `product` will be initialized using the steps in FR-003 and FR-001.
 - **FR-005**: During the testing phase, only a `manager` is able to create merchandise
 - **FR-006**: The "merchandise" page will be deleted immediately after testing
+- **FR-007**: Only the fields completed in the edit form are actually saved to the object
 
 ## Key Entities
 - **Merchandise**: The simplest unit of an order. It describes how many of a product is ordered at what cost.
@@ -56,6 +57,7 @@ Criteria
 | `totalPrice` | DOUBLE | Required, calculated with the formula listed in FR-003 |
 | `cases` | INTEGER | Required |
 | `qtyPerCase` | INTEGER | Required |
+| `id` | INTEGER PK | Auto-increment |
 
 ## Acceptance Criteria
 

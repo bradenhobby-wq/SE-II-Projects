@@ -4,7 +4,7 @@
 **Status:** Draft
 **Created:** 2026-10-07
 **Input:** Maintains the receiving of shipments - both verifying that the right items were received and putting those items away
-**Depends on:** [Feature 4 — supplier order maintenance](feature-4-supplier-order-maintenance.md) [Feature 5 — bill of lading maintenance](feature-5-bill-of-lading-maintenance.md)
+**Depends on:** [Feature 4 — supplier order maintenance](feature-4-supplier-order-maintenance.md) [Feature 5 — bill of lading maintenance](feature-5-bill-of-lading-maintenance.md) [Feature 10 — Merchandise Management](feature-10-merchandise-management.md) [Feature 11 - User Authentication And Verification](feature-11-user-authentication-and-verification.md)
 
 ## User Stories
 ### US-6.1: Add Received Orders
@@ -52,13 +52,13 @@ Criteria
 **Acceptance scenarios:** see ### US-6.4 under Acceptance
 Criteria
 
-### US-6.6: Delete Received Orders
+### US-6.6: Deactivate Received Orders
 **As a** shipping clerk
-**I want to** delete a `ReceivedOrders`
+**I want to** deactivate a `ReceivedOrders`
 **So that** I can remove orders we no longer need
 
 **Priority:** P1
-**Independent test:** Make a `ReceivedOrder` using a matching bill of lading and supplier order, delete the newly created `ReceivedOrder`
+**Independent test:** Make a `ReceivedOrder` using a matching bill of lading and supplier order, deactivate the newly created `ReceivedOrder`
 **Acceptance scenarios:** see ### US-6.5 under Acceptance
 Criteria
 
@@ -72,8 +72,10 @@ Criteria
 - **FR-005**: Only aisles that are being stocked with items from the shipment show up on the optimized route
 - **FR-006**: Verify that `BillOfLading.orderNumber` matches `SupplierOrder.supplierOrderId` when calling `ReceivedOrder.compare` 
 - **FR-007**: `receivingDoor`, `order`, and `bill` are required to create a `ReceivedOrder`
-- **FR-008**: Only shipping clerks can edit, delete, or search received orders
+- **FR-008**: Only shipping clerks can edit, deactivate, or search received orders
 - **FR-009**: When displaying the missing items, at least the unit cost, quantity, total cost, and name must be displayed for each item
+- **FR-010**: Only the fields completed in the edit form are actually saved to the object
+- **FR-011**: Only active objects are displayed in the UI
 
 ## Key Entities
 - **ReceivedOrder**: Used to verify that all items were received on shipment and to assist warehouse worker is putting up the received shipment
@@ -155,5 +157,5 @@ Criteria
 #### Scenario: Order Successfully Deactivated
 * **Given** a shipping clerk is logged in
 * **And** a `ReceivedOrder` object exists
-* **When** the clerk clicks the "Delete" button by the object
+* **When** the clerk clicks the "Deactivate" button by the object
 * **Then** the `ReceivedOrder` is deactivated
