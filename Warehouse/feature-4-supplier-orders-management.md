@@ -1,10 +1,10 @@
 # Feature: Supplier Order Management
 **Feature ID:** 4
 **Branch pattern:** `feature/supplier_orders_management`
-**Status:** Draft
+**Status:** First Draft
 **Created:** 2026-10-06
-**Input:** Maintain supplier orders - add, update, and delete orders. Also makes an order when stock gets low
-**Depends on:** [Feature 10 — Merchandise Management](feature-10-merchandise-management.md)
+**Input:** Maintain supplier orders - add, update, and deactivate orders. Also makes an order when stock gets low
+**Depends on:** [Feature 10 — Merchandise Management](feature-10-merchandise-management.md) [Feature 11 - User Authentication And Verification](feature-11-user-authentication-and-verification.md)
 
 ## User Stories
 ### US-4.1: Add Orders
@@ -13,7 +13,7 @@
 **So that** we can restock our inventory
 
 **Priority:** P1
-**Independent test:** As an inventory/supplier clerk, send a Supplier Order to an office email and verify it sent correctly
+**Independent test:** As an inventory/shipping clerk, send a Supplier Order to an office email and verify it sent correctly
 **Acceptance scenarios:** see ### US-4.1 under Acceptance
 Criteria
 
@@ -27,13 +27,13 @@ Criteria
 **Acceptance scenarios:** see ### US-4.2 under Acceptance
 Criteria
 
-### US-4.3: Delete Orders
+### US-4.3: Deactivate Orders
 **As a** inventory/shipping clerk
-**I want to** delete supplier orders
+**I want to** deactivate supplier orders
 **So that** duplicate entries or cancelled orders are no longer recorded
 
 **Priority:** P1
-**Independent test:** Send a supplier order, delete the supplier order, check to see if the order is removed
+**Independent test:** Send a supplier order, deactivate the supplier order, check to see if the order is removed
 **Acceptance scenarios:** see ### US-4.3 under Acceptance
 Criteria
 
@@ -52,7 +52,7 @@ Criteria
 **I want to** be able to search supplier orders using either `SupplierOrder.date` or `SupplierOrder.customerNumber`
 **So that** I can easily access information about supplier orders
 
-**Priority:** P1
+**Priority:** P2
 **Independent test:** Inventory/shipping clerk calls `SupplierOrders.search` with the info they want to search by; supplier orders with matching information is returned
 **Acceptance scenarios:** see ### US-4.6 under Acceptance
 Criteria
@@ -66,6 +66,8 @@ Criteria
 - **FR-004**: Add a Supplier Order to `SupplierOrdersList.list` every time a Supplier Order is created
 - **FR-005**: All recorded dates must be in MM/DD/YYYY format.
 - **FR-006**: `orderNumber` must be incremented by one for every supplier order
+- **FR-007**: Only the fields completed in the edit form are actually saved to the object
+- **FR-008**: Only inventory or shipping clerks can add, edit, or deactivate a `SupplierOrder`
 
 ## Key Entities
 - **SupplierOrdersList**: Contains all of the Supplier Orders ever made
@@ -126,10 +128,10 @@ Criteria
 * **Then** a `SupplierOrder` is not saved
 * **And** the system responds "Enter dates in MM/DD/YYYY format"
 
-### US-4.3 — Delete Orders
-#### Scenario: Order Successfully Deleted
+### US-4.3 — Deactivate Orders
+#### Scenario: Order Successfully Deactivated
 * **Given** an inventory/shipping clerk is logged in and authorized
-* **When** the clerk selects and confirms a supplier order to be deleted
+* **When** the clerk selects and confirms a supplier order to be deactivated
 * **Then** the supplier order is removed from the database
 
 ### US-4.4 — Automatically Order Inventory When Supply Is Low

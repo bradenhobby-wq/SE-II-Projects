@@ -1,7 +1,7 @@
 # Feature: Barcode Scanning Maintenance
 **Feature ID:** 14
 **Branch pattern:** `feature/14-barcode-scanning-maintenance`
-**Status:** Draft
+**Status:** First Draft
 **Created:** 2026-10-13
 **Input:** Allows the barcode scanner to scan the barcode and perform the correct action 
 **Depends on:** [Feature 14 — Barcode Scanning Maintenance](feature-14-barcode-scanning-maintenance.md)

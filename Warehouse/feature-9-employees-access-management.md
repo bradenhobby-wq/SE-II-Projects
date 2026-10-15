@@ -1,10 +1,9 @@
 # Feature: Employees Access Management
 **Feature ID:** 9
 **Branch pattern:** `feature/employees-access-management`
-**Status:** Draft
+**Status:** First Draft
 **Created:** 2026-10-11
 **Input:** Maintain employees - add, edit and delete.
-**Depends on:** [Feature X — …](feature-X-….md)
 
 ## User Stories
 ### US-9.1: Add Employees
@@ -49,11 +48,12 @@ Criteria
 
 ## Requirements
 ### Functional Requirements
-- **FR-001**: Managers can search employees by name or id
+- **FR-001**: Managers ALONE are ALLOWED TO search employees by name or id
 - **FR-002**: Employees CANNOT update their role or employee id
-- **FR-003**: The four roles are: 1. "Inventory Clerk" 2. "Warehouse Worker" 3. "Shipping Clerk" 4. "Driver" 5. "Warehouse Manager" 6. "Company Manager"
+- **FR-003**: The six roles are: 1. "Inventory Clerk" 2. "Warehouse Worker" 3. "Shipping Clerk" 4. "Driver" 5. "Warehouse Manager" 6. "Company Manager"
 - **FR-004**: The manager enters in the information for the employees. All fields except for employee id and password are required
 - **FR-005**: If the employee changes their password when editing their information, they must provide a verification code from their email
+- **FR-007**: Only the fields completed in the edit form are actually saved to the object
 
 ## Key Entities
 - **Employee**: A worker for the warehouse who is allowed to perform certain tasks on the app

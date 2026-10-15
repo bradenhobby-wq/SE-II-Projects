@@ -1,9 +1,9 @@
 # Feature: Customers Management
 **Feature ID:** 7
 **Branch pattern:** `feature/customers-mangement`
-**Status:** Draft
+**Status:** First Draft
 **Created:** 2026-10-08
-**Input:** Maintain customers: add, update, delete customers
+**Input:** Maintain customers: add, update, deactivate customers
 **Depends on:** [Feature 11 — User Authentication & Verification](feature-11-user-authentication-and-verification.md)
 
 ## User Stories
@@ -11,6 +11,7 @@
 **As a** shipping clerk
 **I want to** be able to add customers
 **So that** we can keep up with our delivery orders
+
 **Priority:** P1
 **Independent test:** Add a customer, verify the changes were saved
 **Acceptance scenarios:** see ### US-7.1 under Acceptance
@@ -20,6 +21,7 @@ Criteria
 **As a** shipping clerk
 **I want to** be able to edit customers
 **So that** customer information stays updated
+
 **Priority:** P1
 **Independent test:** Edit a customer, save changes, verify it saved correctly
 **Acceptance scenarios:** see ### US-7.2 under Acceptance
@@ -29,6 +31,7 @@ Criteria
 **As a** shipping clerk
 **I want to** be able to deactivate customers
 **So that** customers who no longer order from us don't clutter our search results
+
 **Priority:** P1
 **Independent test:** Deactivate a customer object, verify it doesn't appear on the search results
 **Acceptance scenarios:** see ### US-7.3 under Acceptance
@@ -38,7 +41,8 @@ Criteria
 **As a** shipping clerk
 **I want to** be able to search customers
 **So that** I can find information about our clients easily
-**Priority:** P1
+
+**Priority:** P2
 **Independent test:** Search for a customer using their name or ID
 **Acceptance scenarios:** see ### US-7.4 under Acceptance
 Criteria
@@ -49,6 +53,8 @@ Criteria
 - **FR-002**: A name, address, email, and id is required to create a `Customer`
 - **FR-003**: Only the fields completed in the edit form are actually saved to the object
 - **FR-004**: The password must have at least one special character, one lower case letter, one upper case letter, and one number. It must also be 10+ characters long
+- **FR-005**: Only the fields completed in the edit form are actually saved to the object
+- **FR-006**: Only active objects are displayed in the UI
 
 ## Key Entities
 - **Customer**: Someone who orders shipments from the warehouse

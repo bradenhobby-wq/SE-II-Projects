@@ -1,7 +1,7 @@
 # Feature: Common Inventory Items Management
 **Feature ID:** 1
 **Branch pattern:** `feature/common_inventory_items_management`
-**Status:** Draft
+**Status:** Final Draft
 **Created:** 2026-10-01
 **Input:** Maintain items that are commonly purchased for inventory - includes identifying attributes like identifaction codes, price, and product descriptions
 **Depends on:** [Feature 3 — User Authentication and Verification](feature-3-user-authentication-and-verification.md)
@@ -42,18 +42,20 @@ Criteria
 **I want to** be able to easily find the information of a certain product
 **So that** I can access product information when I need to
 
-**Priority:** P1
+**Priority:** P2
 **Independent test:** Clerk calls `CommonItems.search` with a name; products in `CommonItems.list` with a matching (or similar) name show up
 **Acceptance scenarios:** see ### US-1.4 under Acceptance
 Criteria
 
 ## Requirements
 ### Functional Requirements
-- **FR-001**: Authorized workers MUST be able to access all of the CommonItems functions
+- **FR-001**: ONLY inventory clerks CAN ACCESS all of the CommonItems functions
 - **FR-002**: The sku and upc MUST be unique on every instance
 - **FR-003**: minStock MUST be less than maxStock
 - **FR-004**: salesPrice MUST be rounded to two decimal places when displayed
 - **FR-005**: search results MUST appear before 10 seconds have passed from the search query
+- **FR-006**: Only the fields completed in the edit form are actually saved to the object
+- **FR-007**: Only active `Product` and `CommonItems` are displayed in the UI
 
 ## Key Entities
 - **CommonItems**: Contains a list of Products. Is meant to provide quick access to products commonly purchased
@@ -65,17 +67,19 @@ Criteria
 | `minStock` |INTEGER | Required |
 | `maxStock` |INTEGER | Required |
 | `currentStock` |INTEGER | Required |
-| `sku` | STRING(30) | Required, unique |
+| `sku` | STRING(30) PK | Required, unique |
 | `upc` | STRING(30) | Required; unique |
 | `name` | STRING(30) | Required; unique |
 | `salesPrice` | DOUBLE | Required |
 | `primarySupplier` | SUPPLIER | Required |
+| `active` | BOOLEAN | Default false |
 
 ### `CommonItems` table
 | Field | Type | Rules |
 |-------|------|-------|
 | `products` | PRODUCT LIST | Required |
 | `productCount` | INTEGER | Auto-increment with additions to `products` |
+| `active` | BOOLEAN | Default false |
 
 
 ## Acceptance Criteria
@@ -104,10 +108,10 @@ Criteria
 * **Then** the system does not allow the `Product` to be changed
 * **And** the system responds "SKU or UPC already in use"
 
-### US-1.3 — Delete Common Inventory Items
-#### Scenario: Item Successfully Deleted
+### US-1.3 — Deactivate Common Inventory Items
+#### Scenario: Item Successfully Deactivated
 * **Given** An inventory clerk is logged in and authorized
-* **When** they delete a `Product`
+* **When** they deactivate a `Product`
 * **Then** the `Product` no longer appears on the `CommonItems` page
 * **And** the `Product` is not saved in memory
 

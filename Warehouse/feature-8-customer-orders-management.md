@@ -1,10 +1,10 @@
 # Feature: Customer Orders Management
 **Feature ID:** 8
 **Branch pattern:** `feature/customer-orders-management`
-**Status:** Draft
+**Status:** First Draft
 **Created:** 2026-10-08
-**Input:** Add, update, delete customer orders. Also assists in shipment to customers
-**Depends on:** [Feature 7 — Customers Management](feature-7-customers-management.md)
+**Input:** Add, update, deactivate customer orders. Also assists in shipment to customers
+**Depends on:** [Feature 7 — Customers Management](feature-7-customers-management.md) [Feature 11 - User Authentication And Verification](feature-11-user-authentication-and-verification.md)
 
 ## User Stories
 ### US-8.1: Customer Sends Order
@@ -22,7 +22,7 @@ Criteria
 **I want to** be able to see the adresses of the customers I need to visit
 **So that** I can quickly deliver the products
 
-**Priority:** P2
+**Priority:** P1
 **Independent test:** Create multiple customer orders, have the driver view the route
 **Acceptance scenarios:** see ### US-8.2 under Acceptance
 Criteria
@@ -31,6 +31,7 @@ Criteria
 **As a** driver
 **I want to** record any items that were supposed to be shipped but weren't
 **So that** the customer only pays for what they received
+
 **Priority:** P1
 **Independent test:** Create customer orders, have the customer record any missing items
 **Acceptance scenarios:** see ### US-8.3 under Acceptance
@@ -40,7 +41,8 @@ Criteria
 **As a** shipping clerk
 **I want to** search past customer orders
 **So that** I can easily access past records
-**Priority:** P1
+
+**Priority:** P2
 **Independent test:** Create a large number of customer orders, search for specific orders
 **Acceptance scenarios:** see ### US-8.4 under Acceptance
 Criteria
